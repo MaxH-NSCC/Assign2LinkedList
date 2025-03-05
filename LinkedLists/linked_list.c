@@ -1,5 +1,6 @@
 #include "linked_list.h"
 #include <stddef.h>
+#include <stdlib.h>
 
 // Linked list structures
 typedef struct LinkedListNode {
@@ -17,7 +18,15 @@ struct LinkedList {
 
 // Creates and initializes an empty linked list
 LinkedList *list_create(void) {
-
+    // create and return an empty linked list:
+    LinkedList * list = malloc(sizeof(LinkedList));
+    if (list == NULL) {
+        return NULL;
+    }
+    list->size = 0;
+    list->head = NULL;
+    list->tail = NULL;
+    return list;
 };
 
 // Inserts a new node at the end of the list
