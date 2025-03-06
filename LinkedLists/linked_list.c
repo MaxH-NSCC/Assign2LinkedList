@@ -32,7 +32,20 @@ LinkedList *list_create(void) {
 // Inserts a new node at the end of the list
 // returns 0 on success. -1 on failure
 int list_add(LinkedList *list, void *data) {
+    if (list == NULL) return -1;
 
+    LinkedListNode * new_node = malloc(sizeof(LinkedListNode));
+    if (new_node == NULL) return -1;
+    new_node->data = data;
+    new_node->next = NULL;
+    if (list->size == 0) {
+        list->head = new_node;
+    } else {
+        list->tail->next = new_node;
+    }
+    list->tail = new_node;
+    list->size++;
+    return 0;
 };
 
 // Inserts a new node at a specific index (0-based)
