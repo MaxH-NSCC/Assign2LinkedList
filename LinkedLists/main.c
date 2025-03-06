@@ -10,6 +10,8 @@ int main(void)
     } else {
         printf("List created successfully!\n");
     }
+    int list_size_result = list_size(my_linked_list);
+    printf("Size of list: %d\n", list_size_result);
 
     int result = list_add(my_linked_list, "Albert");
     if (result == -1) {
@@ -18,6 +20,9 @@ int main(void)
     } else {
         printf("Added to linked list!\n");
     }
+    list_size_result = list_size(my_linked_list);
+    printf("Size of list: %d\n", list_size_result);
+
     for (int i = 0; i < 10; i++) {
         int result2 = list_add(my_linked_list, i+1);
         if (result2 == -1) {
@@ -27,6 +32,8 @@ int main(void)
             printf("Added to linked list again!\n");
         }
     }
+    list_size_result = list_size(my_linked_list);
+    printf("Size of list: %d\n", list_size_result);
 
     return 0;
 }

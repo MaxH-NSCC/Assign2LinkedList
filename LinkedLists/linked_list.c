@@ -68,7 +68,8 @@ int list_remove_at(LinkedList *list, size_t index, void **out_data) {
 
 // Returns the size of the list
 size_t list_size(const LinkedList *list) {
-
+    if (list == NULL) return -1;
+    return list->size;
 };
 
 // Frees all nodes and also applies a free function to stored data
