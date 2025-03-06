@@ -1,0 +1,6 @@
+# ninja log v6
+50	331	7629954537183996	CMakeFiles/LinkedLists.dir/linked_list.c.obj	7c7bc86dca8bb737
+7	126	7629961036413903	CMakeFiles/LinkedLists.dir/main.c.obj	d96909559248e6cb
+127	395	7629961037671881	LinkedLists.exe	63e5b9fe56ff9e2c
+8	133	7629961401839083	CMakeFiles/LinkedLists.dir/main.c.obj	d96909559248e6cb
+134	329	7629961403099573	LinkedLists.exe	63e5b9fe56ff9e2c
