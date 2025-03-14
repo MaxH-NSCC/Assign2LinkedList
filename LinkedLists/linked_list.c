@@ -36,8 +36,10 @@ int list_add(LinkedList *list, void *data) {
 
     LinkedListNode * new_node = malloc(sizeof(LinkedListNode));
     if (new_node == NULL) return -1;
+
     new_node->data = data;
     new_node->next = NULL;
+
     if (list->size == 0) {
         list->head = new_node;
     } else {
@@ -57,7 +59,19 @@ int list_insert_at(LinkedList *list, size_t index, void *data) {
     if (new_node == NULL) return -1;
     new_node->data = data;
 
+    if (index == 0) {
+        new_node->next = list->head;
+        list->head = new_node;
+    } else {
+        LinkedListNode * cursor = list->head;
 
+        for (size_t i = 0; i < index - 1; i++){
+            cursor = cursor->next;
+        }
+
+        new_node->next = cursor->next;
+        cursor->next = new_node;
+    }
 
     list->size++;
     return 0;
