@@ -51,13 +51,31 @@ int list_add(LinkedList *list, void *data) {
 // Inserts a new node at a specific index (0-based)
 // Returns 0 if successful, -1 if index is out of bounds
 int list_insert_at(LinkedList *list, size_t index, void *data) {
+    if (list == NULL || index > list->size) return -1;
 
+    LinkedListNode * new_node = malloc(sizeof(LinkedListNode));
+    if (new_node == NULL) return -1;
+    new_node->data = data;
+
+
+
+    list->size++;
+    return 0;
 };
 
 // fetches an element at specified index
 // returns 0 on sucsess, -1 on failure
 int list_get_at(LinkedList *list, size_t index, void **out_data) {
+    if (list == NULL || out_data == NULL || index >= list->size) return -1;
 
+    LinkedListNode * cursor = list->head;
+
+    for (size_t i = 0; i < index; i++){
+        cursor = cursor->next;
+    }
+
+    *out_data = cursor->data;
+    return 0;
 };
 
 // Removes and returns the element at a specific index
