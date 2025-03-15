@@ -16,6 +16,8 @@ void printValue(void *ptr, char type) {
 int main(void)
 {
     printf("Starting testing\n");
+
+    // list create
     LinkedList * my_linked_list = list_create();
     if (my_linked_list == NULL) {
         printf("Error creating list!\n");
@@ -23,9 +25,12 @@ int main(void)
     } else {
         printf("List created successfully!\n");
     }
+
+    // list size
     int list_size_result = list_size(my_linked_list);
     printf("Size of list: %d\n", list_size_result);
 
+    // list add
     int result = list_add(my_linked_list, "Albert");
     if (result == -1) {
         printf("Failed to add to linked list!\n");
@@ -54,10 +59,48 @@ int main(void)
             printf("Added to linked list again!\n");
         }
     }
+
+    // list size check
     list_size_result = list_size(my_linked_list);
     printf("Size of list: %d\n", list_size_result);
 
+
+    // list get
     void* get_data;
+    result = list_get_at(my_linked_list, 0, &get_data);
+    if (result == -1) {
+        printf("Failed to get data");
+        return 1;
+    }
+    if (result == 0) {
+        printValue(get_data, 'c');
+        printf("Success getting value!\n");
+    }
+
+    result = list_get_at(my_linked_list, 1, &get_data);
+    if (result == -1) {
+        printf("Failed to get data");
+        return 1;
+    }
+    if (result == 0) {
+        printValue(get_data, 'c');
+        printf("Success getting value!\n");
+    }
+
+    // list insert
+    result = list_insert_at(my_linked_list, 1, "Z");
+    if (result == -1) {
+        printf("Failed to insert value\n");
+    }
+    if (result == 0) {
+        printf("Inserted value\n");
+    }
+
+    // list size check
+    list_size_result = list_size(my_linked_list);
+    printf("Size of list: %d\n", list_size_result);
+
+    // list get check
     result = list_get_at(my_linked_list, 0, &get_data);
     if (result == -1) {
         printf("Failed");
@@ -68,14 +111,13 @@ int main(void)
         printf("Success getting value!\n");
     }
 
-    void* get_data2;
-    result = list_get_at(my_linked_list, 1, &get_data2);
+    result = list_get_at(my_linked_list, 1, &get_data);
     if (result == -1) {
         printf("Failed");
         return 1;
     }
     if (result == 0) {
-        printValue(get_data2, 'c');
+        printValue(get_data, 'c');
         printf("Success getting value!\n");
     }
 

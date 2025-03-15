@@ -78,7 +78,7 @@ int list_insert_at(LinkedList *list, size_t index, void *data) {
 };
 
 // fetches an element at specified index
-// returns 0 on sucsess, -1 on failure
+// returns 0 on success, -1 on failure
 int list_get_at(LinkedList *list, size_t index, void **out_data) {
     if (list == NULL || out_data == NULL || index >= list->size) return -1;
 
