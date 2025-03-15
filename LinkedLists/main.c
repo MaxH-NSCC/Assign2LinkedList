@@ -121,6 +121,42 @@ int main(void)
         printf("Success getting value!\n");
     }
 
+    // list remove
+    result = list_remove_at(my_linked_list, 1, &get_data);
+    if (result == -1) {
+        printf("Failed to insert value\n");
+    }
+    if (result == 0) {
+        printf("Removed value\n");
+    }
+    printValue(get_data, 'c');
+
+    // list size check
+    list_size_result = list_size(my_linked_list);
+    printf("Size of list: %d\n", list_size_result);
+
+    // list get check
+    result = list_get_at(my_linked_list, 0, &get_data);
+    if (result == -1) {
+        printf("Failed");
+        return 1;
+    }
+    if (result == 0) {
+        printValue(get_data, 'c');
+        printf("Success getting value!\n");
+    }
+
+    result = list_get_at(my_linked_list, 1, &get_data);
+    if (result == -1) {
+        printf("Failed");
+        return 1;
+    }
+    if (result == 0) {
+        printValue(get_data, 'c');
+        printf("Success getting value!\n");
+    }
+
+
 
     return 0;
 }

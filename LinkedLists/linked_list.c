@@ -95,7 +95,34 @@ int list_get_at(LinkedList *list, size_t index, void **out_data) {
 // Removes and returns the element at a specific index
 // returns 0 on sucsess, -1 on failure
 int list_remove_at(LinkedList *list, size_t index, void **out_data) {
+    if (list == NULL || index >= list->size) return -1;
 
+    LinkedListNode * cursor = list->head;
+    LinkedListNode * removed_node;
+
+    if (index == 0) {
+        removed_node = list->head;
+        list->head = list->head->next;
+        if (list->size == 1) {
+            list->tail = NULL;
+        }
+
+    } else {
+        for (size_t i = 0; i < index -1; i++) {
+            cursor = cursor->next;
+        }
+        removed_node = cursor->next;
+        cursor->next = removed_node->next;
+
+        if (list->size == 1) {
+            list->tail = cursor->next;
+        }
+    }
+
+    *out_data = removed_node->data;
+    list->size--;
+    free(removed_node);
+    return 0;
 };
 
 // Returns the size of the list
