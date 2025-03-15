@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+
 #include "linked_list.h"
 
 void printValue(void *ptr, char type) {
@@ -156,7 +158,9 @@ int main(void)
         printf("Success getting value!\n");
     }
 
-
+    // Free list
+    list_destroy(my_linked_list, NULL);
+    // using the free function gives an error
 
     return 0;
 }

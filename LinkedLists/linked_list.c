@@ -135,7 +135,33 @@ size_t list_size(const LinkedList *list) {
 // if NULL is passed in for the function pointer it does not free any data
 // and only frees the list itself.
 void list_destroy(LinkedList *list, void (*free_func)(void *)) {
+    if (list == NULL) return;
 
+    if (list->size == 0) {
+        free(list);
+        return;
+    }
+
+    if (list->size == 1) {
+        if (free_func != NULL) {
+            free_func(list->head->data);
+        }
+        free(list->head);
+        free(list);
+        return;
+    }
+
+    LinkedListNode * cursor = list->head;
+    while (cursor != NULL) {
+        LinkedListNode * to_delete = cursor;
+        cursor = cursor->next;
+
+        if (free_func != NULL) {
+            free_func(to_delete->data);
+        }
+        free(to_delete);
+    }
+    free(list);
 };
 
 // Linked list iterator functions
