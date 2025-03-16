@@ -170,26 +170,45 @@ void list_destroy(LinkedList *list, void (*free_func)(void *)) {
 // helps us move from one item to the next item
 // efficiently, but without exposing the internal components of the
 // linked list itself.
-typedef struct ListIterator ListIterator;
+typedef struct ListIterator {
+    LinkedListNode * cursor;
+    LinkedList * list;
+} ListIterator;
 
 // Creates an iterator for the given list starting at the first element
 ListIterator *list_iterator_create(LinkedList *list) {
+    if (list == NULL) return NULL;
+    ListIterator * iter = malloc(sizeof(ListIterator));
+    if (iter == NULL) return NULL;
 
+    iter->cursor = list->head;
+    iter->list = list;
+    return iter;
 };
 
 // Advances the iterator and retrieves the next element
 // Returns 1 if there is a next element, 0 if the end of the list is reached
 int list_iterator_next(ListIterator *iter, void **out_data) {
-
+    if (iter == NULL) return -1;
+    iter->cursor = iter->cursor->next;
+    if (iter->cursor->next == NULL) {
+        *out_data = iter->cursor->data;
+        return 0;
+    } else {
+        *out_data = iter->cursor->data;
+        return 1;
+    }
 };
 
 // Resets the iterator to the start of the list
 void list_iterator_reset(ListIterator *iter) {
-
+    if (iter == NULL) return;
+    iter->cursor = iter->list->head;
 };
 
 // Destroys the iterator and frees any allocated memory
 // notice this has nothing to do with the list that this iterator is pointing to
 void list_iterator_destroy(ListIterator *iter) {
-
+    if (iter == NULL) return;
+    free(iter);
 };
